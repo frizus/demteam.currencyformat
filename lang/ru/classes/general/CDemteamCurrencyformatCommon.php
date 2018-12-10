@@ -1,0 +1,3 @@
+<?
+$MESS["DEMTEAM_CURRENCYFORMAT_DEFAULT_SELECT"] = "Выберите";
+?>

@@ -1,0 +1,5 @@
+@font-face {
+	font-family: 'ALSRublRegular';
+	src: url('rouble.eot');
+	src: local('ALS Rubl'), local('ALSRubl'), url('rouble.woff') format('woff'), url('rouble.ttf') format('truetype'), url('rouble.svg#ALSRubl') format('svg');
+}

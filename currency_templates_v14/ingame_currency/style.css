@@ -1,0 +1,21 @@
+.demteam_currency_wrapper {
+
+}
+
+.demteam_currency_gold {
+	background: transparent url('images/gold.png') right center no-repeat;
+	padding: 0 15px 0 0;
+	margin: 0 0 0 10px;
+}
+
+.demteam_currency_silver {
+	background: transparent url('images/silver.png') right center no-repeat;
+	padding: 0 15px 0 0;
+	margin: 0 0 0 10px;
+}
+
+.demteam_currency_copper {
+	background: transparent url('images/copper.png') right center no-repeat;
+	padding: 0 15px 0 0;
+	margin: 0 0 0 10px;
+}
