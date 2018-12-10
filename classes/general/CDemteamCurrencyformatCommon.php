@@ -5,7 +5,7 @@ class CDemteamCurrencyformatCommon
 	const MODULE_ID = demteam_currencyformat::MODULE_ID;
 	const PREFIX = demteam_currencyformat::PREFIX;
 	
-	// Функция возвращает результат после включения указанного файла
+	// Р¤СѓРЅРєС†РёСЏ РІРѕР·РІСЂР°С‰Р°РµС‚ СЂРµР·СѓР»СЊС‚Р°С‚ РїРѕСЃР»Рµ РІРєР»СЋС‡РµРЅРёСЏ СѓРєР°Р·Р°РЅРЅРѕРіРѕ С„Р°Р№Р»Р°
 	public function return_output($filepath)
 	{
 		if (file_exists($filepath))
@@ -16,8 +16,8 @@ class CDemteamCurrencyformatCommon
 		}
 	}
 	
-	/* Функция гененирирует субтабы и заполняет их параметрами
-	 * Вид массива описан методе GetParameters класса параметров
+	/* Р¤СѓРЅРєС†РёСЏ РіРµРЅРµРЅРёСЂРёСЂСѓРµС‚ СЃСѓР±С‚Р°Р±С‹ Рё Р·Р°РїРѕР»РЅСЏРµС‚ РёС… РїР°СЂР°РјРµС‚СЂР°РјРё
+	 * Р’РёРґ РјР°СЃСЃРёРІР° РѕРїРёСЃР°РЅ РјРµС‚РѕРґРµ GetParameters РєР»Р°СЃСЃР° РїР°СЂР°РјРµС‚СЂРѕРІ
 	 */
 	public function GenerateSubtabs(&$arParameter)
 	{
@@ -32,7 +32,7 @@ class CDemteamCurrencyformatCommon
 		}
 		
 		static $i; $i++;
-		// Вывод вложенных вкладок -- НАЧАЛО
+		// Р’С‹РІРѕРґ РІР»РѕР¶РµРЅРЅС‹С… РІРєР»Р°РґРѕРє -- РќРђР§РђР›Рћ
 		$tabControl = new CAdminViewTabControl(self::PREFIX.'ViewTabControl'.$i, $aTabs);
 		echo '<tr><td colspan="2">';
 		$tabControl->Begin();
@@ -47,11 +47,11 @@ class CDemteamCurrencyformatCommon
 
 		$tabControl->End();
 		echo '</td></tr>';
-		// Вывод вложенных вкладок -- КОНЕЦ
+		// Р’С‹РІРѕРґ РІР»РѕР¶РµРЅРЅС‹С… РІРєР»Р°РґРѕРє -- РљРћРќР•Р¦
 	}
 	
-	/* Функция выводит табличную строку с параметром
-	 * За основу взят код /bitrix/modules/main/admin/settings.php __AdmSettingsDrawRow
+	/* Р¤СѓРЅРєС†РёСЏ РІС‹РІРѕРґРёС‚ С‚Р°Р±Р»РёС‡РЅСѓСЋ СЃС‚СЂРѕРєСѓ СЃ РїР°СЂР°РјРµС‚СЂРѕРј
+	 * Р—Р° РѕСЃРЅРѕРІСѓ РІР·СЏС‚ РєРѕРґ /bitrix/modules/main/admin/settings.php __AdmSettingsDrawRow
 	 */
 	public function DrawRow(&$param)
 	{
@@ -133,8 +133,8 @@ class CDemteamCurrencyformatCommon
 		endif;
 	}
 	
-	/* Функция выводит список параметров табличными строками
-	 * За основу взят код /bitrix/modules/main/admin/settings.php __AdmSettingsDrawList
+	/* Р¤СѓРЅРєС†РёСЏ РІС‹РІРѕРґРёС‚ СЃРїРёСЃРѕРє РїР°СЂР°РјРµС‚СЂРѕРІ С‚Р°Р±Р»РёС‡РЅС‹РјРё СЃС‚СЂРѕРєР°РјРё
+	 * Р—Р° РѕСЃРЅРѕРІСѓ РІР·СЏС‚ РєРѕРґ /bitrix/modules/main/admin/settings.php __AdmSettingsDrawList
 	 */
 	public function DrawList(&$parameters)
 	{

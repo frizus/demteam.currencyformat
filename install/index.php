@@ -69,16 +69,16 @@ class demteam_currencyformat extends CModule
 			$details = array();
 			if (version_compare(SM_VERSION, '9.5.10')>=0)
 			{
-				// Описание решения доступно в закладке
+				// РћРїРёСЃР°РЅРёРµ СЂРµС€РµРЅРёСЏ РґРѕСЃС‚СѓРїРЅРѕ РІ Р·Р°РєР»Р°РґРєРµ
 				$details[] = GetMessage('demteam.currencyformat_LOOK_URL', array('#LINK#'=>self::URL_CURRENCY_EDIT.'?lang='.LANGUAGE_ID));
 			}
 			else
 			{
-				// Инструкция по работе доступна странице решения
+				// РРЅСЃС‚СЂСѓРєС†РёСЏ РїРѕ СЂР°Р±РѕС‚Рµ РґРѕСЃС‚СѓРїРЅР° СЃС‚СЂР°РЅРёС†Рµ СЂРµС€РµРЅРёСЏ
 				$details[] = GetMessage('demteam.currencyformat_SOLUTION_URL', array('#MODULE_ID#'=>self::MODULE_ID));
 				if (version_compare(SM_VERSION, '8.0.2')<0)
 				{
-					// Для получения форматированной валюты используйте функцию
+					// Р”Р»СЏ РїРѕР»СѓС‡РµРЅРёСЏ С„РѕСЂРјР°С‚РёСЂРѕРІР°РЅРЅРѕР№ РІР°Р»СЋС‚С‹ РёСЃРїРѕР»СЊР·СѓР№С‚Рµ С„СѓРЅРєС†РёСЋ
 					$details[] = GetMessage('demteam.currencyformat_USE_FUNCTION', array('#BASE_CLASS#'=>self::BASE_CLASS,'#CURRENCY_FORMAT_ARGS_BY_VERSION#'=>self::CurrencyFormatParams()));
 				}
 			}
@@ -121,7 +121,7 @@ class demteam_currencyformat extends CModule
 		else return '$fSum, $strCurrency';
 	}
 	
-	// Функция для определения версии модуля валют
+	// Р¤СѓРЅРєС†РёСЏ РґР»СЏ РѕРїСЂРµРґРµР»РµРЅРёСЏ РІРµСЂСЃРёРё РјРѕРґСѓР»СЏ РІР°Р»СЋС‚
 	public function CurrencyVersion()
 	{
 		static $CurrencyVersion;

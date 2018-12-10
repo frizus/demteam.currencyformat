@@ -1,6 +1,6 @@
 <?if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();
 /*
- * Ñêðûâàþòñÿ íóëè â ñóììå, êîãäà ÷èñëî öåëîå
+ * Ð¡ÐºÑ€Ñ‹Ð²Ð°ÑŽÑ‚ÑÑ Ð½ÑƒÐ»Ð¸ Ð² ÑÑƒÐ¼Ð¼Ðµ, ÐºÐ¾Ð³Ð´Ð° Ñ‡Ð¸ÑÐ»Ð¾ Ñ†ÐµÐ»Ð¾Ðµ
  */
 /** @var string $fSum */
 /** @var string $strCurrency */
@@ -11,7 +11,7 @@
 
 $arCurFormat = CDemteamCurrencyformat::GetCurrencyFormat($strCurrency, $lang);
 
-// Åñëè öåíà öåëîå ÷èñëî, òî óáèðàåì äåñÿòè÷íûå çíàêè ïîñëå çàïÿòîé
+// Ð•ÑÐ»Ð¸ Ñ†ÐµÐ½Ð° Ñ†ÐµÐ»Ð¾Ðµ Ñ‡Ð¸ÑÐ»Ð¾, Ñ‚Ð¾ ÑƒÐ±Ð¸Ñ€Ð°ÐµÐ¼ Ð´ÐµÑÑÑ‚Ð¸Ñ‡Ð½Ñ‹Ðµ Ð·Ð½Ð°ÐºÐ¸ Ð¿Ð¾ÑÐ»Ðµ Ð·Ð°Ð¿ÑÑ‚Ð¾Ð¹
 if ((int)$fSum==(float)$fSum) $arCurFormat["DECIMALS"] = 0;
 	
 $num = number_format($fSum, $arCurFormat["DECIMALS"], $arCurFormat["DEC_POINT"], $arCurFormat["THOUSANDS_SEP"]);

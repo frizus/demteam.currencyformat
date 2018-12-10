@@ -1,15 +1,15 @@
 <?
 IncludeModuleLangFile(__FILE__);
 
-/* Класс для работы с шаблоном формата валюты */
+/* РљР»Р°СЃСЃ РґР»СЏ СЂР°Р±РѕС‚С‹ СЃ С€Р°Р±Р»РѕРЅРѕРј С„РѕСЂРјР°С‚Р° РІР°Р»СЋС‚С‹ */
 class CDemteamCurrencyformatTemplate
 {
 	const MODULE_ID = demteam_currencyformat::MODULE_ID;
 	const PREFIX = demteam_currencyformat::PREFIX;
 	const CURRENCY_TEMPLATES = 'currency_templates';
 	
-	// Функция инициализирует шаблон валюты при первом вызове
-	// И всегда выполняет вывод шаблона
+	// Р¤СѓРЅРєС†РёСЏ РёРЅРёС†РёР°Р»РёР·РёСЂСѓРµС‚ С€Р°Р±Р»РѕРЅ РІР°Р»СЋС‚С‹ РїСЂРё РїРµСЂРІРѕРј РІС‹Р·РѕРІРµ
+	// Р РІСЃРµРіРґР° РІС‹РїРѕР»РЅСЏРµС‚ РІС‹РІРѕРґ С€Р°Р±Р»РѕРЅР°
 	// \bitrix\modules\main\classes\general\component_template.php:172
 	public function IncludeTemplate($currency_args, $templateName='', $site_id=false, $lang=false)
 	{
@@ -23,17 +23,17 @@ class CDemteamCurrencyformatTemplate
 	
 	
 	
-	/* Вспомогательная функция, служит для поиска папки с шаблонами валюты
-	 * Приоритет поиска:
-	 * 	/local/templates/<шаблон сайта>/currency_templates
+	/* Р’СЃРїРѕРјРѕРіР°С‚РµР»СЊРЅР°СЏ С„СѓРЅРєС†РёСЏ, СЃР»СѓР¶РёС‚ РґР»СЏ РїРѕРёСЃРєР° РїР°РїРєРё СЃ С€Р°Р±Р»РѕРЅР°РјРё РІР°Р»СЋС‚С‹
+	 * РџСЂРёРѕСЂРёС‚РµС‚ РїРѕРёСЃРєР°:
+	 * 	/local/templates/<С€Р°Р±Р»РѕРЅ СЃР°Р№С‚Р°>/currency_templates
 	 *  /local/templates/.default/currency_templates
-	 *  /bitrix/templates/<шаблон сайта>/currency_templates
+	 *  /bitrix/templates/<С€Р°Р±Р»РѕРЅ СЃР°Р№С‚Р°>/currency_templates
 	 *  /bitrix/templates/.default/currency_templates
 	 */
 	private function _SearchTemplatesFolder(&$templateName, &$site_id)
 	{
 		$defTemplate = '.default';
-		// Инициализация шаблона
+		// РРЅРёС†РёР°Р»РёР·Р°С†РёСЏ С€Р°Р±Р»РѕРЅР°
 		if ($site_id === false && defined("SITE_TEMPLATE_ID"))
 			$site_id = SITE_TEMPLATE_ID;
 		elseif (!strlen($site_id))
@@ -46,13 +46,13 @@ class CDemteamCurrencyformatTemplate
 		
 		$defSiteTemplate = ($site_id == $defTemplate);
 		$dirs = array();
-		// Указываем пути для поиска шаблонов валюты
+		// РЈРєР°Р·С‹РІР°РµРј РїСѓС‚Рё РґР»СЏ РїРѕРёСЃРєР° С€Р°Р±Р»РѕРЅРѕРІ РІР°Р»СЋС‚С‹
 		if(!$defSiteTemplate) $dirs[] = array('path'=>"/local/templates/".$site_id.$relativePath, 'site'=>$site_id);
 		$dirs[] = array('path'=>"/local/templates/".$defTemplate.$relativePath, 'site'=>$defTemplate);
 		if(!$defSiteTemplate) $dirs[] = array('path'=>BX_PERSONAL_ROOT."/templates/".$site_id.$relativePath, 'site'=>$site_id);
 		$dirs[] = array('path'=>BX_PERSONAL_ROOT."/templates/".$defTemplate.$relativePath, 'site'=>$defTemplate);
 
-		// Ищем директорию с шаблоном
+		// РС‰РµРј РґРёСЂРµРєС‚РѕСЂРёСЋ СЃ С€Р°Р±Р»РѕРЅРѕРј
 		foreach ($dirs as &$dir)
 		{
 			$absDir = $_SERVER["DOCUMENT_ROOT"].$dir['path'];
@@ -62,10 +62,10 @@ class CDemteamCurrencyformatTemplate
 		return false;
 	}
 	
-	/* Вспомогательная функция, служит для поиска папки с шаблоном валюты
-	 * Приоритет поиска:
-	 *  <папка с шаблонами>/<шаблон валюты>
-	 *  <папка с шаблонами>/.default
+	/* Р’СЃРїРѕРјРѕРіР°С‚РµР»СЊРЅР°СЏ С„СѓРЅРєС†РёСЏ, СЃР»СѓР¶РёС‚ РґР»СЏ РїРѕРёСЃРєР° РїР°РїРєРё СЃ С€Р°Р±Р»РѕРЅРѕРј РІР°Р»СЋС‚С‹
+	 * РџСЂРёРѕСЂРёС‚РµС‚ РїРѕРёСЃРєР°:
+	 *  <РїР°РїРєР° СЃ С€Р°Р±Р»РѕРЅР°РјРё>/<С€Р°Р±Р»РѕРЅ РІР°Р»СЋС‚С‹>
+	 *  <РїР°РїРєР° СЃ С€Р°Р±Р»РѕРЅР°РјРё>/.default
 	 */
 	private function _SearchTemplateFolder(&$templateName, &$main_dir)
 	{
@@ -85,10 +85,10 @@ class CDemteamCurrencyformatTemplate
 	}
 
 	
-	/* Вспомогательная функция, выполняет команду eval() над файлом шаблона template.php
-	 * Файл кешируется для повторного использования
-	 * Подключает файлы style.css и script.js и языковой файл
-	 * При первом запуске также выполняет скрипт template_prolog.php
+	/* Р’СЃРїРѕРјРѕРіР°С‚РµР»СЊРЅР°СЏ С„СѓРЅРєС†РёСЏ, РІС‹РїРѕР»РЅСЏРµС‚ РєРѕРјР°РЅРґСѓ eval() РЅР°Рґ С„Р°Р№Р»РѕРј С€Р°Р±Р»РѕРЅР° template.php
+	 * Р¤Р°Р№Р» РєРµС€РёСЂСѓРµС‚СЃСЏ РґР»СЏ РїРѕРІС‚РѕСЂРЅРѕРіРѕ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёСЏ
+	 * РџРѕРґРєР»СЋС‡Р°РµС‚ С„Р°Р№Р»С‹ style.css Рё script.js Рё СЏР·С‹РєРѕРІРѕР№ С„Р°Р№Р»
+	 * РџСЂРё РїРµСЂРІРѕРј Р·Р°РїСѓСЃРєРµ С‚Р°РєР¶Рµ РІС‹РїРѕР»РЅСЏРµС‚ СЃРєСЂРёРїС‚ template_prolog.php
 	 */
 	private function _process_template(&$currency_args, &$template_path, &$site_id, &$lang)
 	{
@@ -101,12 +101,12 @@ class CDemteamCurrencyformatTemplate
 			if (file_exists($filepath))
 			{
 				$eval_codes[$template_path] = '?><?php unset($code)?>'.self::_read_file($filepath).'<?php ';
-				// Подключаем файлы style.css и script.js
+				// РџРѕРґРєР»СЋС‡Р°РµРј С„Р°Р№Р»С‹ style.css Рё script.js
 				if (file_exists($absTemplate_path.'/style.css')) $GLOBALS['APPLICATION']->SetAdditionalCSS($template_path.'/style.css');
 				if (file_exists($absTemplate_path.'/script.js')) $GLOBALS['APPLICATION']->AddHeadScript($template_path.'/script.js');
-				// Подключаем языковой файл
+				// РџРѕРґРєР»СЋС‡Р°РµРј СЏР·С‹РєРѕРІРѕР№ С„Р°Р№Р»
 				self::IncludeLangFile($template_file, $absTemplate_path, $lang);
-				// Подключаем пролог к шаблону один раз
+				// РџРѕРґРєР»СЋС‡Р°РµРј РїСЂРѕР»РѕРі Рє С€Р°Р±Р»РѕРЅСѓ РѕРґРёРЅ СЂР°Р·
 				if (file_exists($absTemplate_path.'/template_prolog.php')) self::_include_file($currency_args, $absTemplate_path.'/template_prolog.php', $template_path, $site_id, $lang);
 			}
 			else
@@ -118,7 +118,7 @@ class CDemteamCurrencyformatTemplate
 		return self::_eval_php($currency_args, $template_path, $eval_codes[$template_path], $template_path, $site_id, $lang);
 	}
 	
-	// Вспомогательная функция, читает php-файл
+	// Р’СЃРїРѕРјРѕРіР°С‚РµР»СЊРЅР°СЏ С„СѓРЅРєС†РёСЏ, С‡РёС‚Р°РµС‚ php-С„Р°Р№Р»
 	private function _read_file($filepath)
 	{
 		$content = file_get_contents($filepath);
@@ -126,8 +126,8 @@ class CDemteamCurrencyformatTemplate
 		{
 			$tokens = token_get_all($content); $open_tag = false; $new_content = '';
 			$realpath = realpath($filepath); $constant = array('file'=>'"'.$realpath.'"', 'dir'=>'"'.dirname($realpath).'"');
-			// Скрипт заменяет "волшебные константы" __FILE__ и __DIR__ на соответствующие строки
-			// и добавляет закрывающий php-тэг, если пропущен
+			// РЎРєСЂРёРїС‚ Р·Р°РјРµРЅСЏРµС‚ "РІРѕР»С€РµР±РЅС‹Рµ РєРѕРЅСЃС‚Р°РЅС‚С‹" __FILE__ Рё __DIR__ РЅР° СЃРѕРѕС‚РІРµС‚СЃС‚РІСѓСЋС‰РёРµ СЃС‚СЂРѕРєРё
+			// Рё РґРѕР±Р°РІР»СЏРµС‚ Р·Р°РєСЂС‹РІР°СЋС‰РёР№ php-С‚СЌРі, РµСЃР»Рё РїСЂРѕРїСѓС‰РµРЅ
 			foreach($tokens as &$token)
 			{
 				if (is_string($token)) $new_content .= $token;
@@ -148,7 +148,7 @@ class CDemteamCurrencyformatTemplate
 		return $content;
 	}
 	
-	/* Вспомогательная функция для выполнения php кода */
+	/* Р’СЃРїРѕРјРѕРіР°С‚РµР»СЊРЅР°СЏ С„СѓРЅРєС†РёСЏ РґР»СЏ РІС‹РїРѕР»РЅРµРЅРёСЏ php РєРѕРґР° */
 	private function _eval_php($currency_args, $templateFile, &$code, $templateFolder, $site_id, $lang)
 	{
 		if ($lang===false) $lang=LANGUAGE_ID;
@@ -158,7 +158,7 @@ class CDemteamCurrencyformatTemplate
 		return ob_get_clean();
 	}
 	
-	/* Вспомогательная функция для одноразового выполнения php-файлов */
+	/* Р’СЃРїРѕРјРѕРіР°С‚РµР»СЊРЅР°СЏ С„СѓРЅРєС†РёСЏ РґР»СЏ РѕРґРЅРѕСЂР°Р·РѕРІРѕРіРѕ РІС‹РїРѕР»РЅРµРЅРёСЏ php-С„Р°Р№Р»РѕРІ */
 	private function _include_file($currency_args, $prologFile, $templateFolder, $site_id, $lang)
 	{
 		global $APPLICATION;
@@ -169,8 +169,8 @@ class CDemteamCurrencyformatTemplate
 	
 	
 	
-	/* Функция подключает языковой файл шаблона вылюты
-	 * Взято с CBitrixComponentTemplate::IncludeLangFile \bitrix\modules\main\classes\general\component_template.php:554
+	/* Р¤СѓРЅРєС†РёСЏ РїРѕРґРєР»СЋС‡Р°РµС‚ СЏР·С‹РєРѕРІРѕР№ С„Р°Р№Р» С€Р°Р±Р»РѕРЅР° РІС‹Р»СЋС‚С‹
+	 * Р’Р·СЏС‚Рѕ СЃ CBitrixComponentTemplate::IncludeLangFile \bitrix\modules\main\classes\general\component_template.php:554
 	 */
 	private function IncludeLangFile(&$template_file, &$template_path, &$lang)
 	{

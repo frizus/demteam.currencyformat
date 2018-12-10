@@ -1,7 +1,7 @@
 <?if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();
 /*
- * Âûâîä ñóììû ñî ñïåö. çíàêîì ðóáëÿ äëÿ âàëþòû RUB è RUR
- * Ñêðûâàþòñÿ íóëè â ñóììå, êîãäà ÷èñëî öåëîå
+ * Ð’Ñ‹Ð²Ð¾Ð´ ÑÑƒÐ¼Ð¼Ñ‹ ÑÐ¾ ÑÐ¿ÐµÑ†. Ð·Ð½Ð°ÐºÐ¾Ð¼ Ñ€ÑƒÐ±Ð»Ñ Ð´Ð»Ñ Ð²Ð°Ð»ÑŽÑ‚Ñ‹ RUB Ð¸ RUR
+ * Ð¡ÐºÑ€Ñ‹Ð²Ð°ÑŽÑ‚ÑÑ Ð½ÑƒÐ»Ð¸ Ð² ÑÑƒÐ¼Ð¼Ðµ, ÐºÐ¾Ð³Ð´Ð° Ñ‡Ð¸ÑÐ»Ð¾ Ñ†ÐµÐ»Ð¾Ðµ
  */
 /** @var string $fSum */
 /** @var string $strCurrency */
@@ -12,7 +12,7 @@
 
 $arCurFormat = CDemteamCurrencyformat::GetCurrencyFormat($strCurrency, $lang);
 
-// Åñëè ñóììà öåëîå ÷èñëî, òî óáèðàåì äåñÿòè÷íûå çíàêè ïîñëå çàïÿòîé
+// Ð•ÑÐ»Ð¸ ÑÑƒÐ¼Ð¼Ð° Ñ†ÐµÐ»Ð¾Ðµ Ñ‡Ð¸ÑÐ»Ð¾, Ñ‚Ð¾ ÑƒÐ±Ð¸Ñ€Ð°ÐµÐ¼ Ð´ÐµÑÑÑ‚Ð¸Ñ‡Ð½Ñ‹Ðµ Ð·Ð½Ð°ÐºÐ¸ Ð¿Ð¾ÑÐ»Ðµ Ð·Ð°Ð¿ÑÑ‚Ð¾Ð¹
 if ((int)$fSum==(float)$fSum) $arCurFormat["DECIMALS"] = 0;
 
 if ($strCurrency=='RUB' || $strCurrency=='RUR')

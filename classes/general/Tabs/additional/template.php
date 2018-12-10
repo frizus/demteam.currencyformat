@@ -1,8 +1,8 @@
 <?
-// Ïîëó÷åíèå ïàðàìåòðîâ äëÿ çàêëàäêè "Äîïîëíèòåëüíî" â ôîðìå ðåäàêòèðîâàíèÿ âàëþòû
+// ÐŸÐ¾Ð»ÑƒÑ‡ÐµÐ½Ð¸Ðµ Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ð¾Ð² Ð´Ð»Ñ Ð·Ð°ÐºÐ»Ð°Ð´ÐºÐ¸ "Ð”Ð¾Ð¿Ð¾Ð»Ð½Ð¸Ñ‚ÐµÐ»ÑŒÐ½Ð¾" Ð² Ñ„Ð¾Ñ€Ð¼Ðµ Ñ€ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð¸Ñ Ð²Ð°Ð»ÑŽÑ‚Ñ‹
 $arResult['PARAMETERS'] = &CDemteamCurrencyformatParameters::GetParameters('currency_advanced', true);
 
-// Âûâîä êîäà
+// Ð’Ñ‹Ð²Ð¾Ð´ ÐºÐ¾Ð´Ð°
 foreach($arResult['PARAMETERS']['ITEMS'] as &$arParameter)
 {
 	if (array_key_exists('SUBTABS', $arParameter))

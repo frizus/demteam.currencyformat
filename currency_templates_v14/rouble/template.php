@@ -1,6 +1,6 @@
 <?if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();
 /*
- * Âûâîä ñóììû ñî ñïåö. çíàêîì ðóáëÿ äëÿ âàëþòû RUB è RUR
+ * Ð’Ñ‹Ð²Ð¾Ð´ ÑÑƒÐ¼Ð¼Ñ‹ ÑÐ¾ ÑÐ¿ÐµÑ†. Ð·Ð½Ð°ÐºÐ¾Ð¼ Ñ€ÑƒÐ±Ð»Ñ Ð´Ð»Ñ Ð²Ð°Ð»ÑŽÑ‚Ñ‹ RUB Ð¸ RUR
  */
 /** @var string $price */
 /** @var string $currency */

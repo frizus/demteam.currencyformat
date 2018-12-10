@@ -1,24 +1,24 @@
 <?
 IncludeModuleLangFile(__FILE__);
 
-/* Класс для обработчиков событий модуля */
+/* РљР»Р°СЃСЃ РґР»СЏ РѕР±СЂР°Р±РѕС‚С‡РёРєРѕРІ СЃРѕР±С‹С‚РёР№ РјРѕРґСѓР»СЏ */
 class CDemteamCurrencyformatEvent
 {
 	const MODULE_ID = demteam_currencyformat::MODULE_ID;
 	const PREFIX = demteam_currencyformat::PREFIX;
 	const URL_CURRENCY_EDIT = demteam_currencyformat::URL_CURRENCY_EDIT;
 
-	// Функция для события, которое позволяет изменить или добавить собственные вкладки формы редактирования в административном интерфейсе
+	// Р¤СѓРЅРєС†РёСЏ РґР»СЏ СЃРѕР±С‹С‚РёСЏ, РєРѕС‚РѕСЂРѕРµ РїРѕР·РІРѕР»СЏРµС‚ РёР·РјРµРЅРёС‚СЊ РёР»Рё РґРѕР±Р°РІРёС‚СЊ СЃРѕР±СЃС‚РІРµРЅРЅС‹Рµ РІРєР»Р°РґРєРё С„РѕСЂРјС‹ СЂРµРґР°РєС‚РёСЂРѕРІР°РЅРёСЏ РІ Р°РґРјРёРЅРёСЃС‚СЂР°С‚РёРІРЅРѕРј РёРЅС‚РµСЂС„РµР№СЃРµ
 	public function OnAdminTabControlBegin(&$form)
 	{
 		global $APPLICATION;
 		if ($APPLICATION->GetCurPage(true)==self::URL_CURRENCY_EDIT)
 		{
 			$tabs_files = array(
-				'additional' => str_replace('\\', '/', dirname(__FILE__)).'/Tabs/additional/template.php', // Страница создания / редактирования валюты
+				'additional' => str_replace('\\', '/', dirname(__FILE__)).'/Tabs/additional/template.php', // РЎС‚СЂР°РЅРёС†Р° СЃРѕР·РґР°РЅРёСЏ / СЂРµРґР°РєС‚РёСЂРѕРІР°РЅРёСЏ РІР°Р»СЋС‚С‹
 			);
 			
-			// Добавляем закладку
+			// Р”РѕР±Р°РІР»СЏРµРј Р·Р°РєР»Р°РґРєСѓ
 			$form->tabs[] = array(
 				'DIV' => self::PREFIX.'edit1',
 				'TAB' => GetMessage("DEMTEAM_CURRENCYFORMAT_DOPOLNITELQNO"),
@@ -30,21 +30,21 @@ class CDemteamCurrencyformatEvent
 	}
 	
 	
-	// Функция для события вызываемого в выполняемой части пролога сайта
+	// Р¤СѓРЅРєС†РёСЏ РґР»СЏ СЃРѕР±С‹С‚РёСЏ РІС‹Р·С‹РІР°РµРјРѕРіРѕ РІ РІС‹РїРѕР»РЅСЏРµРјРѕР№ С‡Р°СЃС‚Рё РїСЂРѕР»РѕРіР° СЃР°Р№С‚Р°
 	public function OnBeforeProlog()
 	{
 		global $APPLICATION;
 		if ($_SERVER['REQUEST_METHOD']=='POST' && $APPLICATION->GetCurPage(true)==self::URL_CURRENCY_EDIT && 
 		    $APPLICATION->GetGroupRight('currency')=='W' && check_bitrix_sessid())
 		{
-			// POST-запрос на странице создания / редактирования валюты
-			// У пользователя есть права на запись в модуле "Валюты"
+			// POST-Р·Р°РїСЂРѕСЃ РЅР° СЃС‚СЂР°РЅРёС†Рµ СЃРѕР·РґР°РЅРёСЏ / СЂРµРґР°РєС‚РёСЂРѕРІР°РЅРёСЏ РІР°Р»СЋС‚С‹
+			// РЈ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ РµСЃС‚СЊ РїСЂР°РІР° РЅР° Р·Р°РїРёСЃСЊ РІ РјРѕРґСѓР»Рµ "Р’Р°Р»СЋС‚С‹"
 			CDemteamCurrencyformatParameters::SaveParameters('currency_advanced');
 		}
 	}
 	
 	
-	// Функция для события вызываемого во время удаления сайта
+	// Р¤СѓРЅРєС†РёСЏ РґР»СЏ СЃРѕР±С‹С‚РёСЏ РІС‹Р·С‹РІР°РµРјРѕРіРѕ РІРѕ РІСЂРµРјСЏ СѓРґР°Р»РµРЅРёСЏ СЃР°Р№С‚Р°
 	public function OnSiteDelete($site_id)
 	{
 		CDemteamCurrencyformatParameters::DeleteSiteParameters($site_id);
@@ -52,7 +52,7 @@ class CDemteamCurrencyformatEvent
 	}
 	
 	
-	// Функция для события вызываемого во время удаления языка
+	// Р¤СѓРЅРєС†РёСЏ РґР»СЏ СЃРѕР±С‹С‚РёСЏ РІС‹Р·С‹РІР°РµРјРѕРіРѕ РІРѕ РІСЂРµРјСЏ СѓРґР°Р»РµРЅРёСЏ СЏР·С‹РєР°
 	public function OnLanguageDelete($language_id)
 	{
 		CDemteamCurrencyformatParameters::DeleteLanguageParameters($language_id);

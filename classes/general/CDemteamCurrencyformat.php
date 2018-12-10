@@ -1,7 +1,7 @@
 <?
 IncludeModuleLangFile(__FILE__);
 
-/* Êëàññ äëÿ ïóáëè÷íûõ íàñòðîåê */
+/* ÐšÐ»Ð°ÑÑ Ð´Ð»Ñ Ð¿ÑƒÐ±Ð»Ð¸Ñ‡Ð½Ñ‹Ñ… Ð½Ð°ÑÑ‚Ñ€Ð¾ÐµÐº */
 class CDemteamCurrencyformat
 {
 	const SEP_EMPTY = 'N';
@@ -34,7 +34,7 @@ class CDemteamCurrencyformat
 	static private $site_id = false;
 	static private $lang = false;
 	
-	// Ôóíêöèÿ äëÿ ñìåíû øàáëîíà ôîðìàòèðîâàíèÿ âàëþòû
+	// Ð¤ÑƒÐ½ÐºÑ†Ð¸Ñ Ð´Ð»Ñ ÑÐ¼ÐµÐ½Ñ‹ ÑˆÐ°Ð±Ð»Ð¾Ð½Ð° Ñ„Ð¾Ñ€Ð¼Ð°Ñ‚Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð¸Ñ Ð²Ð°Ð»ÑŽÑ‚Ñ‹
 	public function SetTemplate($templateName = false, $site_id = false, $lang = false)
 	{
 		foreach(array('templateName','site_id','lang') as $var)
@@ -44,7 +44,7 @@ class CDemteamCurrencyformat
 		}
 	}
 	
-	// Ôóíöèÿ äëÿ ñîáûòèÿ âûçûâàåìîãî ïðè ôîðìàòèðîâàíèè âàëþòû
+	// Ð¤ÑƒÐ½Ñ†Ð¸Ñ Ð´Ð»Ñ ÑÐ¾Ð±Ñ‹Ñ‚Ð¸Ñ Ð²Ñ‹Ð·Ñ‹Ð²Ð°ÐµÐ¼Ð¾Ð³Ð¾ Ð¿Ñ€Ð¸ Ñ„Ð¾Ñ€Ð¼Ð°Ñ‚Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð¸Ð¸ Ð²Ð°Ð»ÑŽÑ‚Ñ‹
     public function CurrencyFormat($param1, $param2)
     {
 		if(defined('ADMIN_SECTION') && ADMIN_SECTION === true) return;		
@@ -57,7 +57,7 @@ class CDemteamCurrencyformat
 		return $result!==false? (strlen($result)? $result: ' '): NULL;
     }
 	
-	// Ôóíêöèÿ äëÿ ïîëó÷åíèÿ ïåðåìåííîé $arCurFormat äëÿ âûçîâà èç øàáëîíà
+	// Ð¤ÑƒÐ½ÐºÑ†Ð¸Ñ Ð´Ð»Ñ Ð¿Ð¾Ð»ÑƒÑ‡ÐµÐ½Ð¸Ñ Ð¿ÐµÑ€ÐµÐ¼ÐµÐ½Ð½Ð¾Ð¹ $arCurFormat Ð´Ð»Ñ Ð²Ñ‹Ð·Ð¾Ð²Ð° Ð¸Ð· ÑˆÐ°Ð±Ð»Ð¾Ð½Ð°
 	public function GetCurrencyFormat($currency, $lang = LANGUAGE_ID)
 	{
 		static $arCurrencyFormat;

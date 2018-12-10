@@ -1,9 +1,9 @@
 <?if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();
 /*
- * Ñîêðàùåíèå áîëüøîé ñóììû
- * 1000 ðóá. - 1 òûñ. ðóá.
- * 1000000 ðóá. - 1 ìëí. ðóá.
- * Ñêðûâàþòñÿ íóëè â ñóììå, êîãäà ÷èñëî öåëîå
+ * Ð¡Ð¾ÐºÑ€Ð°Ñ‰ÐµÐ½Ð¸Ðµ Ð±Ð¾Ð»ÑŒÑˆÐ¾Ð¹ ÑÑƒÐ¼Ð¼Ñ‹
+ * 1000 Ñ€ÑƒÐ±. - 1 Ñ‚Ñ‹Ñ. Ñ€ÑƒÐ±.
+ * 1000000 Ñ€ÑƒÐ±. - 1 Ð¼Ð»Ð½. Ñ€ÑƒÐ±.
+ * Ð¡ÐºÑ€Ñ‹Ð²Ð°ÑŽÑ‚ÑÑ Ð½ÑƒÐ»Ð¸ Ð² ÑÑƒÐ¼Ð¼Ðµ, ÐºÐ¾Ð³Ð´Ð° Ñ‡Ð¸ÑÐ»Ð¾ Ñ†ÐµÐ»Ð¾Ðµ
  */
 /** @var string $fSum */
 /** @var string $strCurrency */
@@ -15,7 +15,7 @@
 $arCurFormat = CDemteamCurrencyformat::GetCurrencyFormat($strCurrency, $lang);
 $arCurFormat['DECIMALS_ORIG'] = $arCurFormat["DECIMALS"];
 
-// Åñëè öåíà öåëîå ÷èñëî, òî óáèðàåì äåñÿòè÷íûå çíàêè ïîñëå çàïÿòîé
+// Ð•ÑÐ»Ð¸ Ñ†ÐµÐ½Ð° Ñ†ÐµÐ»Ð¾Ðµ Ñ‡Ð¸ÑÐ»Ð¾, Ñ‚Ð¾ ÑƒÐ±Ð¸Ñ€Ð°ÐµÐ¼ Ð´ÐµÑÑÑ‚Ð¸Ñ‡Ð½Ñ‹Ðµ Ð·Ð½Ð°ÐºÐ¸ Ð¿Ð¾ÑÐ»Ðµ Ð·Ð°Ð¿ÑÑ‚Ð¾Ð¹
 if ((int)$fSum==(float)$fSum) $arCurFormat["DECIMALS"] = 0;
 
 $arCurFormat['DECIMALS_SHORTEN'] = $arCurFormat['DECIMALS_ORIG']>1? ($arCurFormat['DECIMALS_ORIG']-1): 0;

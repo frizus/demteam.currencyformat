@@ -1,11 +1,11 @@
 <?
-/* Класс для работы с параметрами в битриксе
- * хранит в себе сами параметры,
- * функцию для подстановки текущих значений в параметры
- * функцию для сохранения параметров, используемую на нужной странице после POST-запроса
- * функцию для формирования параметров с заголовками языков и сайтов для функции Common::DrawRow
- * функцию для получение значения параметра
- * TODO: добавить разделение параметров по аргументу функции: нужно для создания отдельных настроек тех же валют
+/* РљР»Р°СЃСЃ РґР»СЏ СЂР°Р±РѕС‚С‹ СЃ РїР°СЂР°РјРµС‚СЂР°РјРё РІ Р±РёС‚СЂРёРєСЃРµ
+ * С…СЂР°РЅРёС‚ РІ СЃРµР±Рµ СЃР°РјРё РїР°СЂР°РјРµС‚СЂС‹,
+ * С„СѓРЅРєС†РёСЋ РґР»СЏ РїРѕРґСЃС‚Р°РЅРѕРІРєРё С‚РµРєСѓС‰РёС… Р·РЅР°С‡РµРЅРёР№ РІ РїР°СЂР°РјРµС‚СЂС‹
+ * С„СѓРЅРєС†РёСЋ РґР»СЏ СЃРѕС…СЂР°РЅРµРЅРёСЏ РїР°СЂР°РјРµС‚СЂРѕРІ, РёСЃРїРѕР»СЊР·СѓРµРјСѓСЋ РЅР° РЅСѓР¶РЅРѕР№ СЃС‚СЂР°РЅРёС†Рµ РїРѕСЃР»Рµ POST-Р·Р°РїСЂРѕСЃР°
+ * С„СѓРЅРєС†РёСЋ РґР»СЏ С„РѕСЂРјРёСЂРѕРІР°РЅРёСЏ РїР°СЂР°РјРµС‚СЂРѕРІ СЃ Р·Р°РіРѕР»РѕРІРєР°РјРё СЏР·С‹РєРѕРІ Рё СЃР°Р№С‚РѕРІ РґР»СЏ С„СѓРЅРєС†РёРё Common::DrawRow
+ * С„СѓРЅРєС†РёСЋ РґР»СЏ РїРѕР»СѓС‡РµРЅРёРµ Р·РЅР°С‡РµРЅРёСЏ РїР°СЂР°РјРµС‚СЂР°
+ * TODO: РґРѕР±Р°РІРёС‚СЊ СЂР°Р·РґРµР»РµРЅРёРµ РїР°СЂР°РјРµС‚СЂРѕРІ РїРѕ Р°СЂРіСѓРјРµРЅС‚Сѓ С„СѓРЅРєС†РёРё: РЅСѓР¶РЅРѕ РґР»СЏ СЃРѕР·РґР°РЅРёСЏ РѕС‚РґРµР»СЊРЅС‹С… РЅР°СЃС‚СЂРѕРµРє С‚РµС… Р¶Рµ РІР°Р»СЋС‚
  */
 IncludeModuleLangFile(__FILE__);
 class CDemteamCurrencyformatParameters
@@ -17,27 +17,27 @@ class CDemteamCurrencyformatParameters
 	const BY_SITE = 'BY_SITE';
 	const BY_SITE_AND_LANG = 'BY_SITE_AND_LANG';
 	
-	// Функция возвращает список параметров по указанному типу и табу
+	// Р¤СѓРЅРєС†РёСЏ РІРѕР·РІСЂР°С‰Р°РµС‚ СЃРїРёСЃРѕРє РїР°СЂР°РјРµС‚СЂРѕРІ РїРѕ СѓРєР°Р·Р°РЅРЅРѕРјСѓ С‚РёРїСѓ Рё С‚Р°Р±Сѓ
 	private function &Parameters($type=NULL)
 	{
-		/* Вид parameters[$type] = array(params_type=>array(param1, paramN),...)
-		 * где params_type:
-		 *  NORMAL - простые параметры
-		 *  BY_LANG - параметры, указываемые для каждого языка
-		 *  BY_SITE - параметры, указываемые для каждого сайта
-		 *  BY_SITE_AND_LANG - параметры, указываемые для каждого языка каждого сайта
+		/* Р’РёРґ parameters[$type] = array(params_type=>array(param1, paramN),...)
+		 * РіРґРµ params_type:
+		 *  NORMAL - РїСЂРѕСЃС‚С‹Рµ РїР°СЂР°РјРµС‚СЂС‹
+		 *  BY_LANG - РїР°СЂР°РјРµС‚СЂС‹, СѓРєР°Р·С‹РІР°РµРјС‹Рµ РґР»СЏ РєР°Р¶РґРѕРіРѕ СЏР·С‹РєР°
+		 *  BY_SITE - РїР°СЂР°РјРµС‚СЂС‹, СѓРєР°Р·С‹РІР°РµРјС‹Рµ РґР»СЏ РєР°Р¶РґРѕРіРѕ СЃР°Р№С‚Р°
+		 *  BY_SITE_AND_LANG - РїР°СЂР°РјРµС‚СЂС‹, СѓРєР°Р·С‹РІР°РµРјС‹Рµ РґР»СЏ РєР°Р¶РґРѕРіРѕ СЏР·С‹РєР° РєР°Р¶РґРѕРіРѕ СЃР°Р№С‚Р°
 		 *
-		 *  Ключи параметра:
-		 *   key        - название параметра. уникальность ключа по всем params_type в одном $type
-		 *    LABEL     - надпись напротив параметра
-		 *    TYPE*     - тип параметра (textarea, text, password, checkbox, selectbox, multiselectbox, statictext, statichtml)
+		 *  РљР»СЋС‡Рё РїР°СЂР°РјРµС‚СЂР°:
+		 *   key        - РЅР°Р·РІР°РЅРёРµ РїР°СЂР°РјРµС‚СЂР°. СѓРЅРёРєР°Р»СЊРЅРѕСЃС‚СЊ РєР»СЋС‡Р° РїРѕ РІСЃРµРј params_type РІ РѕРґРЅРѕРј $type
+		 *    LABEL     - РЅР°РґРїРёСЃСЊ РЅР°РїСЂРѕС‚РёРІ РїР°СЂР°РјРµС‚СЂР°
+		 *    TYPE*     - С‚РёРї РїР°СЂР°РјРµС‚СЂР° (textarea, text, password, checkbox, selectbox, multiselectbox, statictext, statichtml)
 		 *    TYPE_ADD1
-		 *    TYPE_ADD2 - доп. параметры, применение - в функции Common::DrawRow
-		 *    DEFAULT   - значение по умолчанию
-		 *    VALUE     - текущее значение
-		 *    DISABLED  - флаг параметр выключен
-		 *    SUP_TEXT  - надстрочный красный текст после надписи
-		 *    VALIDATE  - регулярное выражение для функции preg_match для проверки валидности строки
+		 *    TYPE_ADD2 - РґРѕРї. РїР°СЂР°РјРµС‚СЂС‹, РїСЂРёРјРµРЅРµРЅРёРµ - РІ С„СѓРЅРєС†РёРё Common::DrawRow
+		 *    DEFAULT   - Р·РЅР°С‡РµРЅРёРµ РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ
+		 *    VALUE     - С‚РµРєСѓС‰РµРµ Р·РЅР°С‡РµРЅРёРµ
+		 *    DISABLED  - С„Р»Р°Рі РїР°СЂР°РјРµС‚СЂ РІС‹РєР»СЋС‡РµРЅ
+		 *    SUP_TEXT  - РЅР°РґСЃС‚СЂРѕС‡РЅС‹Р№ РєСЂР°СЃРЅС‹Р№ С‚РµРєСЃС‚ РїРѕСЃР»Рµ РЅР°РґРїРёСЃРё
+		 *    VALIDATE  - СЂРµРіСѓР»СЏСЂРЅРѕРµ РІС‹СЂР°Р¶РµРЅРёРµ РґР»СЏ С„СѓРЅРєС†РёРё preg_match РґР»СЏ РїСЂРѕРІРµСЂРєРё РІР°Р»РёРґРЅРѕСЃС‚Рё СЃС‚СЂРѕРєРё
 		 */
 		static $parameters;
 		if (is_array($parameters))
@@ -63,7 +63,7 @@ class CDemteamCurrencyformatParameters
 			self::BY_SITE => array(),
 			self::BY_SITE_AND_LANG => array(),
 		);
-		// Добавление префикса к названиям переменных
+		// Р”РѕР±Р°РІР»РµРЅРёРµ РїСЂРµС„РёРєСЃР° Рє РЅР°Р·РІР°РЅРёСЏРј РїРµСЂРµРјРµРЅРЅС‹С…
 		foreach($parameters as &$parameters_by_type)
 			foreach($parameters_by_type as &$parameters_by_params_type)
 			{
@@ -84,10 +84,10 @@ class CDemteamCurrencyformatParameters
 		return $parameters;
 	}
 	
-	/* Функция возвращает массив параметров с заданными для них значениями с дополнительными заголовками языков и сайтов
-	 * Если есть ошибки, описанные в функции _CheckErrors, то возвращает тексты ошибок
-	 * В обоих случаях, массив пригоден для функции DrawRow
-	 * Отдельный случай, когда надо создать вкладки для сайтов, вид массива вкладок:
+	/* Р¤СѓРЅРєС†РёСЏ РІРѕР·РІСЂР°С‰Р°РµС‚ РјР°СЃСЃРёРІ РїР°СЂР°РјРµС‚СЂРѕРІ СЃ Р·Р°РґР°РЅРЅС‹РјРё РґР»СЏ РЅРёС… Р·РЅР°С‡РµРЅРёСЏРјРё СЃ РґРѕРїРѕР»РЅРёС‚РµР»СЊРЅС‹РјРё Р·Р°РіРѕР»РѕРІРєР°РјРё СЏР·С‹РєРѕРІ Рё СЃР°Р№С‚РѕРІ
+	 * Р•СЃР»Рё РµСЃС‚СЊ РѕС€РёР±РєРё, РѕРїРёСЃР°РЅРЅС‹Рµ РІ С„СѓРЅРєС†РёРё _CheckErrors, С‚Рѕ РІРѕР·РІСЂР°С‰Р°РµС‚ С‚РµРєСЃС‚С‹ РѕС€РёР±РѕРє
+	 * Р’ РѕР±РѕРёС… СЃР»СѓС‡Р°СЏС…, РјР°СЃСЃРёРІ РїСЂРёРіРѕРґРµРЅ РґР»СЏ С„СѓРЅРєС†РёРё DrawRow
+	 * РћС‚РґРµР»СЊРЅС‹Р№ СЃР»СѓС‡Р°Р№, РєРѕРіРґР° РЅР°РґРѕ СЃРѕР·РґР°С‚СЊ РІРєР»Р°РґРєРё РґР»СЏ СЃР°Р№С‚РѕРІ, РІРёРґ РјР°СЃСЃРёРІР° РІРєР»Р°РґРѕРє:
 	 *  array(site_id => array(NAME=>,ITEMS=>array(...)), ..)
 	 */
 	public function &GetParameters($type=NULL, $show_empty_parameters_error=false)
@@ -100,12 +100,12 @@ class CDemteamCurrencyformatParameters
 		
 		if($type)
 		{
-			// Сохранение параметров указанного типа
+			// РЎРѕС…СЂР°РЅРµРЅРёРµ РїР°СЂР°РјРµС‚СЂРѕРІ СѓРєР°Р·Р°РЅРЅРѕРіРѕ С‚РёРїР°
 			$result = self::InitParametersType($parameters, $type, $show_empty_parameters_error);
 		}
 		else
 		{
-			// Сохранение параметров всех типов
+			// РЎРѕС…СЂР°РЅРµРЅРёРµ РїР°СЂР°РјРµС‚СЂРѕРІ РІСЃРµС… С‚РёРїРѕРІ
 			foreach($parameters as $type_name=>&$parameters_by_type)
 				$result[$type_name] = self::InitParametersType($parameters_by_type, $type, $show_empty_parameters_error);
 		}
@@ -113,7 +113,7 @@ class CDemteamCurrencyformatParameters
 		return $result;
 	}
 	
-	// Функция задает значения параметров для одного набора параметров
+	// Р¤СѓРЅРєС†РёСЏ Р·Р°РґР°РµС‚ Р·РЅР°С‡РµРЅРёСЏ РїР°СЂР°РјРµС‚СЂРѕРІ РґР»СЏ РѕРґРЅРѕРіРѕ РЅР°Р±РѕСЂР° РїР°СЂР°РјРµС‚СЂРѕРІ
 	private function InitParametersType(&$parameters, &$type, &$show_empty_parameters_error)
 	{
 		$result = array('HAVE_ERRORS'=>false,'ITEMS'=>array());
@@ -123,7 +123,7 @@ class CDemteamCurrencyformatParameters
 	
 		$output_parameters = &$result['ITEMS'];
 	
-		// Получение значений простых параметров
+		// РџРѕР»СѓС‡РµРЅРёРµ Р·РЅР°С‡РµРЅРёР№ РїСЂРѕСЃС‚С‹С… РїР°СЂР°РјРµС‚СЂРѕРІ
 		foreach($parameters[self::NORMAL] as &$param)
 		{
 			$param['VALUE'] = COption::GetOptionString(self::MODULE_ID, $param['NAME'], $param['DEFAULT']);
@@ -131,16 +131,16 @@ class CDemteamCurrencyformatParameters
 			$output_parameters[] = $param;
 		}
 		
-		// Список языков
+		// РЎРїРёСЃРѕРє СЏР·С‹РєРѕРІ
 		if (count($parameters[self::BY_LANG]) || count($parameters[self::BY_SITE_AND_LANG]))
 			$langs = &self::_langs();
-		// Список сайтов
+		// РЎРїРёСЃРѕРє СЃР°Р№С‚РѕРІ
 		if (count($parameters[self::BY_SITE]) || count($parameters[self::BY_SITE_AND_LANG]))
 			$sites = &self::_sites();
 		
 		if (count($parameters[self::BY_LANG]) && count($langs))
 		{
-			// Получение значений параметров, указываемых для каждого языка
+			// РџРѕР»СѓС‡РµРЅРёРµ Р·РЅР°С‡РµРЅРёР№ РїР°СЂР°РјРµС‚СЂРѕРІ, СѓРєР°Р·С‹РІР°РµРјС‹С… РґР»СЏ РєР°Р¶РґРѕРіРѕ СЏР·С‹РєР°
 			foreach($langs as &$lang)
 			{
 				$output_parameters[] = $lang['NAME'];
@@ -156,7 +156,7 @@ class CDemteamCurrencyformatParameters
 		
 		if (count($parameters[self::BY_SITE]) && count($sites))
 		{
-			// Получение значений параметров, указываемых для каждого сайта
+			// РџРѕР»СѓС‡РµРЅРёРµ Р·РЅР°С‡РµРЅРёР№ РїР°СЂР°РјРµС‚СЂРѕРІ, СѓРєР°Р·С‹РІР°РµРјС‹С… РґР»СЏ РєР°Р¶РґРѕРіРѕ СЃР°Р№С‚Р°
 			$subtabs = array();
 			foreach($sites as &$site)
 			{
@@ -177,7 +177,7 @@ class CDemteamCurrencyformatParameters
 
 		if (count($parameters[self::BY_SITE_AND_LANG]) && count($sites))
 		{
-			// Получение значений параметров, указываемых для каждого языка каждого сайта
+			// РџРѕР»СѓС‡РµРЅРёРµ Р·РЅР°С‡РµРЅРёР№ РїР°СЂР°РјРµС‚СЂРѕРІ, СѓРєР°Р·С‹РІР°РµРјС‹С… РґР»СЏ РєР°Р¶РґРѕРіРѕ СЏР·С‹РєР° РєР°Р¶РґРѕРіРѕ СЃР°Р№С‚Р°
 			if ($subtabs_key===NULL) $subtabs = array();
 			foreach($sites as &$site)
 			{
@@ -217,7 +217,7 @@ class CDemteamCurrencyformatParameters
 		return $result;
 	}
 	
-	// Функция получает значение параметра, в зависимости от типа параметра (по текущему сайту или языку)
+	// Р¤СѓРЅРєС†РёСЏ РїРѕР»СѓС‡Р°РµС‚ Р·РЅР°С‡РµРЅРёРµ РїР°СЂР°РјРµС‚СЂР°, РІ Р·Р°РІРёСЃРёРјРѕСЃС‚Рё РѕС‚ С‚РёРїР° РїР°СЂР°РјРµС‚СЂР° (РїРѕ С‚РµРєСѓС‰РµРјСѓ СЃР°Р№С‚Сѓ РёР»Рё СЏР·С‹РєСѓ)
 	public function GetParameterValue($param_name, $type)
 	{
 		static $params_values;
@@ -227,7 +227,7 @@ class CDemteamCurrencyformatParameters
 		$parameters = &self::Parameters($type);
 		if (!$parameters) { $params_values[$param_name] = NULL; return $params_values[$param_name]; }
 		
-		// Создание одномерного массива key=>value, где key - название параметра, value = params_type
+		// РЎРѕР·РґР°РЅРёРµ РѕРґРЅРѕРјРµСЂРЅРѕРіРѕ РјР°СЃСЃРёРІР° key=>value, РіРґРµ key - РЅР°Р·РІР°РЅРёРµ РїР°СЂР°РјРµС‚СЂР°, value = params_type
 		static $params_type_params;
 		if (!is_array($params_type_params))
 		{
@@ -237,7 +237,7 @@ class CDemteamCurrencyformatParameters
 					$params_type_params[$param['NAME']] = $params_type;
 		}
 		
-		// Смотрим есть ли указанный параметр
+		// РЎРјРѕС‚СЂРёРј РµСЃС‚СЊ Р»Рё СѓРєР°Р·Р°РЅРЅС‹Р№ РїР°СЂР°РјРµС‚СЂ
 		$adjusted_param_name = self::PREFIX.$param_name;
 		if (array_key_exists($adjusted_param_name, $params_type_params))
 		{
@@ -245,7 +245,7 @@ class CDemteamCurrencyformatParameters
 			$param = &$parameters[$params_type][$adjusted_param_name];
 			$param_name_wo_site = NULL;
 			$bExactSite = false;
-			// По типу параметра определяем его имя в настройках
+			// РџРѕ С‚РёРїСѓ РїР°СЂР°РјРµС‚СЂР° РѕРїСЂРµРґРµР»СЏРµРј РµРіРѕ РёРјСЏ РІ РЅР°СЃС‚СЂРѕР№РєР°С…
 			if ($params_type==self::NORMAL)
 			{
 				$param_name_wo_site = $param['NAME'];
@@ -272,7 +272,7 @@ class CDemteamCurrencyformatParameters
 			}
 			
 			if ($param_name_wo_site!==NULL)
-				// Получаем значение
+				// РџРѕР»СѓС‡Р°РµРј Р·РЅР°С‡РµРЅРёРµ
 				$params_values[$param_name] = COption::GetOptionString(self::MODULE_ID, $param_name_wo_site, $param['DEFAULT'], $site_id, $bExactSite);
 			else
 				$params_values[$param_name] = NULL;
@@ -281,9 +281,9 @@ class CDemteamCurrencyformatParameters
 		
 	}
 	
-	/* Функция сохраняет параметры, которые пришли в массиве $_POST
-	 * Охватываемые параметры задаются аргументами:
-	 *  type - тип параметров
+	/* Р¤СѓРЅРєС†РёСЏ СЃРѕС…СЂР°РЅСЏРµС‚ РїР°СЂР°РјРµС‚СЂС‹, РєРѕС‚РѕСЂС‹Рµ РїСЂРёС€Р»Рё РІ РјР°СЃСЃРёРІРµ $_POST
+	 * РћС…РІР°С‚С‹РІР°РµРјС‹Рµ РїР°СЂР°РјРµС‚СЂС‹ Р·Р°РґР°СЋС‚СЃСЏ Р°СЂРіСѓРјРµРЅС‚Р°РјРё:
+	 *  type - С‚РёРї РїР°СЂР°РјРµС‚СЂРѕРІ
 	 */
 	public function SaveParameters($type=NULL)
 	{
@@ -292,43 +292,43 @@ class CDemteamCurrencyformatParameters
 		
 		if($type)
 		{
-			// Сохранение параметров указанного типа
+			// РЎРѕС…СЂР°РЅРµРЅРёРµ РїР°СЂР°РјРµС‚СЂРѕРІ СѓРєР°Р·Р°РЅРЅРѕРіРѕ С‚РёРїР°
 			self::SaveParametersType($parameters);
 		}
 		else
 		{
-			// Сохранение параметров всех типов
+			// РЎРѕС…СЂР°РЅРµРЅРёРµ РїР°СЂР°РјРµС‚СЂРѕРІ РІСЃРµС… С‚РёРїРѕРІ
 			foreach($parameters as &$parameters_by_type)
 				self::SaveParametersType($parameters_by_type);
 		}
 	}
 	
 	
-	// Функция сохраняет параметры одного таба
+	// Р¤СѓРЅРєС†РёСЏ СЃРѕС…СЂР°РЅСЏРµС‚ РїР°СЂР°РјРµС‚СЂС‹ РѕРґРЅРѕРіРѕ С‚Р°Р±Р°
 	private function SaveParametersType(&$parameters)
 	{
-		// Сохранение простых параметров
+		// РЎРѕС…СЂР°РЅРµРЅРёРµ РїСЂРѕСЃС‚С‹С… РїР°СЂР°РјРµС‚СЂРѕРІ
 		foreach($parameters[self::NORMAL] as &$param)
 			self::SaveParameterEntity($param['NAME'], $param);
 		
-		// Список языков
+		// РЎРїРёСЃРѕРє СЏР·С‹РєРѕРІ
 		if (count($parameters[self::BY_LANG]) || count($parameters[self::BY_SITE_AND_LANG]))
 			$langs = &self::_langs();
-		// Список сайтов
+		// РЎРїРёСЃРѕРє СЃР°Р№С‚РѕРІ
 		if (count($parameters[self::BY_SITE]) || count($parameters[self::BY_SITE_AND_LANG]))
 			$sites = &self::_sites();
 		
-		// Сохранение параметров, указываемых для каждого языка
+		// РЎРѕС…СЂР°РЅРµРЅРёРµ РїР°СЂР°РјРµС‚СЂРѕРІ, СѓРєР°Р·С‹РІР°РµРјС‹С… РґР»СЏ РєР°Р¶РґРѕРіРѕ СЏР·С‹РєР°
 		foreach($parameters[self::BY_LANG] as &$param)
 			foreach($langs as &$lang)
 				self::SaveParameterEntity($param['NAME'].$lang['LID_FORMATTED'], $param);
 		
-		// Сохранение параметров, указываемых для каждого сайта
+		// РЎРѕС…СЂР°РЅРµРЅРёРµ РїР°СЂР°РјРµС‚СЂРѕРІ, СѓРєР°Р·С‹РІР°РµРјС‹С… РґР»СЏ РєР°Р¶РґРѕРіРѕ СЃР°Р№С‚Р°
 		foreach($parameters[self::BY_SITE] as &$param)
 			foreach($sites as &$site)
 				self::SaveParameterEntity($param['NAME'], $param, $site['ID']);
 
-		// Сохранение параметров, указываемых для каждого языка каждого сайта
+		// РЎРѕС…СЂР°РЅРµРЅРёРµ РїР°СЂР°РјРµС‚СЂРѕРІ, СѓРєР°Р·С‹РІР°РµРјС‹С… РґР»СЏ РєР°Р¶РґРѕРіРѕ СЏР·С‹РєР° РєР°Р¶РґРѕРіРѕ СЃР°Р№С‚Р°
 		foreach($parameters[self::BY_SITE_AND_LANG] as &$param)
 			foreach($sites as &$site)
 				foreach($langs as &$lang)
@@ -337,8 +337,8 @@ class CDemteamCurrencyformatParameters
 	}
 	
 	
-	// Функция-обертка для SaveParameter
-	// Используется в SaveParametersType
+	// Р¤СѓРЅРєС†РёСЏ-РѕР±РµСЂС‚РєР° РґР»СЏ SaveParameter
+	// РСЃРїРѕР»СЊР·СѓРµС‚СЃСЏ РІ SaveParametersType
 	private function SaveParameterEntity($param_name, &$param, $site_id=false)
 	{
 		$val = $site_id===false? $_POST[$param_name]: $_POST[$param_name][$site_id];
@@ -348,15 +348,15 @@ class CDemteamCurrencyformatParameters
 	}
 	
 	
-	// Функция проверяет корректность значения указанного параметра регулярным выражением
+	// Р¤СѓРЅРєС†РёСЏ РїСЂРѕРІРµСЂСЏРµС‚ РєРѕСЂСЂРµРєС‚РЅРѕСЃС‚СЊ Р·РЅР°С‡РµРЅРёСЏ СѓРєР°Р·Р°РЅРЅРѕРіРѕ РїР°СЂР°РјРµС‚СЂР° СЂРµРіСѓР»СЏСЂРЅС‹Рј РІС‹СЂР°Р¶РµРЅРёРµРј
 	private function ValidateParameter(&$param, $val)
 	{
 		return $param['VALIDATE']? preg_match($param['VALIDATE'], $val): true;		
 	}
 	
-	/* Функция сохраняет указанный параметр
-	 * Вызывается через ее функцию-обертку SaveParameterEntity
-	 * За основу взят код /bitrix/modules/main/admin/settings.php __AdmSettingsSaveOption
+	/* Р¤СѓРЅРєС†РёСЏ СЃРѕС…СЂР°РЅСЏРµС‚ СѓРєР°Р·Р°РЅРЅС‹Р№ РїР°СЂР°РјРµС‚СЂ
+	 * Р’С‹Р·С‹РІР°РµС‚СЃСЏ С‡РµСЂРµР· РµРµ С„СѓРЅРєС†РёСЋ-РѕР±РµСЂС‚РєСѓ SaveParameterEntity
+	 * Р—Р° РѕСЃРЅРѕРІСѓ РІР·СЏС‚ РєРѕРґ /bitrix/modules/main/admin/settings.php __AdmSettingsSaveOption
 	 */
 	private function SaveParameter($param_name, &$param, $val, $site_id=false)
 	{
@@ -397,17 +397,17 @@ class CDemteamCurrencyformatParameters
 	}
 	
 	
-	// Функция удаляет параметры из БД, завязанные на указанном сайте
+	// Р¤СѓРЅРєС†РёСЏ СѓРґР°Р»СЏРµС‚ РїР°СЂР°РјРµС‚СЂС‹ РёР· Р‘Р”, Р·Р°РІСЏР·Р°РЅРЅС‹Рµ РЅР° СѓРєР°Р·Р°РЅРЅРѕРј СЃР°Р№С‚Рµ
 	public function DeleteSiteParameters($site_id)
 	{
 		$parameters = &self::Parameters();
 		foreach($parameters as &$parameters_by_type)
 		{
-			// Удаление простых параметров сайта
+			// РЈРґР°Р»РµРЅРёРµ РїСЂРѕСЃС‚С‹С… РїР°СЂР°РјРµС‚СЂРѕРІ СЃР°Р№С‚Р°
 			foreach($parameters_by_type[self::BY_SITE] as &$param)
 				COption::RemoveOption(self::MODULE_ID, $param['NAME'], $site_id);
 			
-			// Удаление параметров сайта каждого языка
+			// РЈРґР°Р»РµРЅРёРµ РїР°СЂР°РјРµС‚СЂРѕРІ СЃР°Р№С‚Р° РєР°Р¶РґРѕРіРѕ СЏР·С‹РєР°
 			if (count($parameters_by_type[self::BY_SITE_AND_LANG]))
 			{
 				$langs = &self::_langs();
@@ -418,7 +418,7 @@ class CDemteamCurrencyformatParameters
 		}
 	}
 	
-	// Функция удаляет параметры из БД, завязанные на указанном языке
+	// Р¤СѓРЅРєС†РёСЏ СѓРґР°Р»СЏРµС‚ РїР°СЂР°РјРµС‚СЂС‹ РёР· Р‘Р”, Р·Р°РІСЏР·Р°РЅРЅС‹Рµ РЅР° СѓРєР°Р·Р°РЅРЅРѕРј СЏР·С‹РєРµ
 	public function DeleteLanguageParameters($language_id)
 	{
 		$lid_formatted = self::_lid_formatted($language_id);
@@ -426,11 +426,11 @@ class CDemteamCurrencyformatParameters
 
 		foreach($parameters as &$parameters_by_type)
 		{
-			// Удаление простых параметров языка
+			// РЈРґР°Р»РµРЅРёРµ РїСЂРѕСЃС‚С‹С… РїР°СЂР°РјРµС‚СЂРѕРІ СЏР·С‹РєР°
 			foreach($parameters_by_type[self::BY_LANG] as &$param)
 				COption::RemoveOption(self::MODULE_ID, $param['NAME'].$lid_formatted);
 			
-			// Удаление параметров языка каждого сайта
+			// РЈРґР°Р»РµРЅРёРµ РїР°СЂР°РјРµС‚СЂРѕРІ СЏР·С‹РєР° РєР°Р¶РґРѕРіРѕ СЃР°Р№С‚Р°
 			if (count($parameters_by_type[self::BY_SITE_AND_LANG]))
 			{
 				$sites = &self::_sites();
@@ -443,33 +443,33 @@ class CDemteamCurrencyformatParameters
 		}
 	}
 	
-	// Функция удаляет все параметры
-	// Используется при удалении модуля
+	// Р¤СѓРЅРєС†РёСЏ СѓРґР°Р»СЏРµС‚ РІСЃРµ РїР°СЂР°РјРµС‚СЂС‹
+	// РСЃРїРѕР»СЊР·СѓРµС‚СЃСЏ РїСЂРё СѓРґР°Р»РµРЅРёРё РјРѕРґСѓР»СЏ
 	public function DeleteAllParameters()
 	{
 		COption::RemoveOption(self::MODULE_ID);
 	}
 	
 	
-	// Вспомогательная функция, возвращает true, если параметр является текстом для вывода в функции Common::DrawRow
+	// Р’СЃРїРѕРјРѕРіР°С‚РµР»СЊРЅР°СЏ С„СѓРЅРєС†РёСЏ, РІРѕР·РІСЂР°С‰Р°РµС‚ true, РµСЃР»Рё РїР°СЂР°РјРµС‚СЂ СЏРІР»СЏРµС‚СЃСЏ С‚РµРєСЃС‚РѕРј РґР»СЏ РІС‹РІРѕРґР° РІ С„СѓРЅРєС†РёРё Common::DrawRow
 	private function _TextParameter(&$param)
 	{
 		return !is_array($param) || isset($param['note']) || $param['TYPE']=="statictext" || $param['TYPE'] == "statichtml";
 	}
 	
-	// Вспомогательная функция для функции GetParameters
-	// Создает массив с текстами имеющихся ошибок
+	// Р’СЃРїРѕРјРѕРіР°С‚РµР»СЊРЅР°СЏ С„СѓРЅРєС†РёСЏ РґР»СЏ С„СѓРЅРєС†РёРё GetParameters
+	// РЎРѕР·РґР°РµС‚ РјР°СЃСЃРёРІ СЃ С‚РµРєСЃС‚Р°РјРё РёРјРµСЋС‰РёС…СЃСЏ РѕС€РёР±РѕРє
 	private function _CheckErrors(&$parameters, &$type, &$show_empty_parameters_error)
 	{
 		foreach(array(self::NORMAL,self::BY_LANG,self::BY_SITE,self::BY_SITE_AND_LANG) as $params_type)
 			$length[$params_type] = count($parameters[$params_type]);
 
-		// Не указаны параметры
+		// РќРµ СѓРєР°Р·Р°РЅС‹ РїР°СЂР°РјРµС‚СЂС‹
 		if (!$length[self::NORMAL] && !$length[self::BY_LANG] && !$length[self::BY_SITE] && !$length[self::BY_SITE_AND_LANG])
 		{
 			if ($show_empty_parameters_error)
 			{
-				// Параметр текст "нет опций"
+				// РџР°СЂР°РјРµС‚СЂ С‚РµРєСЃС‚ "РЅРµС‚ РѕРїС†РёР№"
 				$arOption = array('note' => self::_GetMessageByType('DEMTEAM_CURRENCYFORMAT_NO_OPTIONS', $type));
 				return array(true, array($arOption));
 			}
@@ -480,24 +480,24 @@ class CDemteamCurrencyformatParameters
 		}
 		
 		
-		// Указаны только параметры для каждого языка
+		// РЈРєР°Р·Р°РЅС‹ С‚РѕР»СЊРєРѕ РїР°СЂР°РјРµС‚СЂС‹ РґР»СЏ РєР°Р¶РґРѕРіРѕ СЏР·С‹РєР°
 		if (!$length[self::NORMAL] && !$length[self::BY_SITE] && ($length[self::BY_LANG] || $length[self::BY_SITE_AND_LANG]))
 		{
-			$langs = &self::_langs(); // Список языков
+			$langs = &self::_langs(); // РЎРїРёСЃРѕРє СЏР·С‹РєРѕРІ
 			if (!count($langs))
 			{
-				// Параметр текст "нет языков"
+				// РџР°СЂР°РјРµС‚СЂ С‚РµРєСЃС‚ "РЅРµС‚ СЏР·С‹РєРѕРІ"
 				$arNoLanguagesOption = array('note' => self::_GetMessageByType('DEMTEAM_CURRENCYFORMAT_NO_LANGUAGES', $type));
 			
-				// Нет языков
+				// РќРµС‚ СЏР·С‹РєРѕРІ
 				if ($length[self::BY_SITE_AND_LANG])
 				{
-					// Указаны параметры для каждого языка каждого сайта
+					// РЈРєР°Р·Р°РЅС‹ РїР°СЂР°РјРµС‚СЂС‹ РґР»СЏ РєР°Р¶РґРѕРіРѕ СЏР·С‹РєР° РєР°Р¶РґРѕРіРѕ СЃР°Р№С‚Р°
 					$items = array($arNoLanguagesOption);
-					$sites = &self::_sites(); // Список сайтов
+					$sites = &self::_sites(); // РЎРїРёСЃРѕРє СЃР°Р№С‚РѕРІ
 					if (count($sites))
 					{
-						// Есть сайты
+						// Р•СЃС‚СЊ СЃР°Р№С‚С‹
 						$subtabs = array();
 						foreach($sites as &$site)
 						{
@@ -507,27 +507,27 @@ class CDemteamCurrencyformatParameters
 					}
 					else
 					{
-						// Параметр текст "нет сайтов"
+						// РџР°СЂР°РјРµС‚СЂ С‚РµРєСЃС‚ "РЅРµС‚ СЃР°Р№С‚РѕРІ"
 						$arNoSitesOption = array('note' => self::_GetMessageByType('DEMTEAM_CURRENCYFORMAT_NO_SITES', $type));
-						// Нет сайтов
+						// РќРµС‚ СЃР°Р№С‚РѕРІ
 						return array(true, array($arNoSitesOption, $arNoLanguagesOption));
 					}
 				}
 				else
 				{
-					// Указаны параметры для каждого языка
+					// РЈРєР°Р·Р°РЅС‹ РїР°СЂР°РјРµС‚СЂС‹ РґР»СЏ РєР°Р¶РґРѕРіРѕ СЏР·С‹РєР°
 					return array(true, array($arNoLanguagesOption));
 				}
 			}
 		}
 	
-		// Указаны только параметры для каждого сайта и нет сайтов
+		// РЈРєР°Р·Р°РЅС‹ С‚РѕР»СЊРєРѕ РїР°СЂР°РјРµС‚СЂС‹ РґР»СЏ РєР°Р¶РґРѕРіРѕ СЃР°Р№С‚Р° Рё РЅРµС‚ СЃР°Р№С‚РѕРІ
 		if (!$length[self::NORMAL] && !$length[self::BY_LANG] && ($length[self::BY_SITE] || $length[self::BY_SITE_AND_LANG]))
 		{
-			$sites = &self::_sites(); // Список сайтов
+			$sites = &self::_sites(); // РЎРїРёСЃРѕРє СЃР°Р№С‚РѕРІ
 			if (!count($sites))
 			{
-				// Параметр текст "нет сайтов"
+				// РџР°СЂР°РјРµС‚СЂ С‚РµРєСЃС‚ "РЅРµС‚ СЃР°Р№С‚РѕРІ"
 				$arNoSitesOption = array('note' => self::_GetMessageByType('DEMTEAM_CURRENCYFORMAT_NO_SITES', $type));
 				return array(true, array($arNoSitesOption));
 			}
@@ -536,7 +536,7 @@ class CDemteamCurrencyformatParameters
 		return array(false, array());
 	}
 	
-	// Вспомогательная функция, возвращает по коду соответствующее сообщение на текущем языке, учитывая тип и таб
+	// Р’СЃРїРѕРјРѕРіР°С‚РµР»СЊРЅР°СЏ С„СѓРЅРєС†РёСЏ, РІРѕР·РІСЂР°С‰Р°РµС‚ РїРѕ РєРѕРґСѓ СЃРѕРѕС‚РІРµС‚СЃС‚РІСѓСЋС‰РµРµ СЃРѕРѕР±С‰РµРЅРёРµ РЅР° С‚РµРєСѓС‰РµРј СЏР·С‹РєРµ, СѓС‡РёС‚С‹РІР°СЏ С‚РёРї Рё С‚Р°Р±
 	private function _GetMessageByType($name, &$type, $aReplace=false)
 	{
 		$s = GetMessage($name.'_'.$type, $aReplace);
@@ -544,7 +544,7 @@ class CDemteamCurrencyformatParameters
 		return $s;
 	}
 	
-	// Вспомогательная функция, возвращает список языков
+	// Р’СЃРїРѕРјРѕРіР°С‚РµР»СЊРЅР°СЏ С„СѓРЅРєС†РёСЏ, РІРѕР·РІСЂР°С‰Р°РµС‚ СЃРїРёСЃРѕРє СЏР·С‹РєРѕРІ
 	private function &_langs()
 	{
 		static $langs;
@@ -557,14 +557,14 @@ class CDemteamCurrencyformatParameters
 		return $langs;
 	}
 	
-	// Вспомогательная функция, преобразует ид языка для подстановки в название параметра
-	// Используется, когда нужно работать с параметрами по указанному языку (DeleteLanguageOptions)
+	// Р’СЃРїРѕРјРѕРіР°С‚РµР»СЊРЅР°СЏ С„СѓРЅРєС†РёСЏ, РїСЂРµРѕР±СЂР°Р·СѓРµС‚ РёРґ СЏР·С‹РєР° РґР»СЏ РїРѕРґСЃС‚Р°РЅРѕРІРєРё РІ РЅР°Р·РІР°РЅРёРµ РїР°СЂР°РјРµС‚СЂР°
+	// РСЃРїРѕР»СЊР·СѓРµС‚СЃСЏ, РєРѕРіРґР° РЅСѓР¶РЅРѕ СЂР°Р±РѕС‚Р°С‚СЊ СЃ РїР°СЂР°РјРµС‚СЂР°РјРё РїРѕ СѓРєР°Р·Р°РЅРЅРѕРјСѓ СЏР·С‹РєСѓ (DeleteLanguageOptions)
 	private function _lid_formatted($language_id)
 	{
 		return '_'.$language_id;
 	}
 	
-	// Вспомогательная функция, возвращает список сайтов
+	// Р’СЃРїРѕРјРѕРіР°С‚РµР»СЊРЅР°СЏ С„СѓРЅРєС†РёСЏ, РІРѕР·РІСЂР°С‰Р°РµС‚ СЃРїРёСЃРѕРє СЃР°Р№С‚РѕРІ
 	private function &_sites()
 	{
 		static $sites;

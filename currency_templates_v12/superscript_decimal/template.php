@@ -1,7 +1,7 @@
 <?if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();
 /*
- * В сумме дробная часть выводится надстрочно
- * В сумме скрывается 0 в целой части, если сумма меньше 1
+ * Р’ СЃСѓРјРјРµ РґСЂРѕР±РЅР°СЏ С‡Р°СЃС‚СЊ РІС‹РІРѕРґРёС‚СЃСЏ РЅР°РґСЃС‚СЂРѕС‡РЅРѕ
+ * Р’ СЃСѓРјРјРµ СЃРєСЂС‹РІР°РµС‚СЃСЏ 0 РІ С†РµР»РѕР№ С‡Р°СЃС‚Рё, РµСЃР»Рё СЃСѓРјРјР° РјРµРЅСЊС€Рµ 1
  * $.50
  * $3.50
  */
@@ -20,7 +20,7 @@ if($arCurFormat["THOUSANDS_VARIANT"] == "B")
 
 if ($arCurFormat["DECIMALS"]>0)
 {
-	// Скрываем ноль в сумме меньшей 1
+	// РЎРєСЂС‹РІР°РµРј РЅРѕР»СЊ РІ СЃСѓРјРјРµ РјРµРЅСЊС€РµР№ 1
 	if ($fSum<1 && $fSum>0)
 		$num = substr($num, 1);
 	$num = substr($num, 0, strpos($num,$arCurFormat["DEC_POINT"])).'<sup class="demteam_currency_decimal">'.substr($num, strpos($num,$arCurFormat["DEC_POINT"])+1).'</sup>';
